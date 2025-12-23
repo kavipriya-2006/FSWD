@@ -1,0 +1,97 @@
+
+import React, { useState } from 'react';
+
+const Quiz = () => {
+  // Define questions and options
+  const quizQuestions = [
+    {
+      question: 'What is the capital of France?',
+      options: ['Berlin', 'Madrid', 'Paris', 'Rome'],
+      answer: 'Paris'
+    },
+    {
+      question: 'Which planet is known as the Red Planet?',
+      options: ['Earth', 'Mars', 'Jupiter', 'Saturn'],
+      answer: 'Mars'
+    },
+    {
+      question: 'What is the largest ocean on Earth?',
+      options: ['Atlantic Ocean', 'Indian Ocean', 'Arctic Ocean', 'Pacific Ocean'],
+      answer: 'Pacific Ocean'
+    }
+  ];
+
+  // State to keep track of selected answers and score
+  const [selectedAnswers, setSelectedAnswers] = useState([]);
+  const [score, setScore] = useState(0);
+
+  // Function to handle option selection
+  const handleOptionChange = (e, questionIndex) => {
+    const updatedAnswers = [...selectedAnswers];
+    updatedAnswers[questionIndex] = e.target.value;
+    setSelectedAnswers(updatedAnswers);
+  };
+
+  // Function to submit quiz and calculate score
+  const handleSubmit = () => {
+    let newScore = 0;
+    quizQuestions.forEach((question, index) => {
+      if (selectedAnswers[index] === question.answer) {
+        newScore++;
+      }
+    });
+    setScore(newScore);
+  };
+
+  return (
+    <div className="quiz-container">
+      <h1>Online Quiz</h1>
+
+      <div id="score-display">
+        Score: <span>{score}</span>
+      </div>
+
+      <div id="quiz-content">
+        {quizQuestions.map((question, index) => (
+          <div key={index} className="question">
+            <h3>{`${index + 1}. ${question.question}`}</h3>
+            {question.options.map((option, i) => (
+              <label key={i}>
+                <input
+                  type="radio"
+                  name={`question${index}`}
+                  value={option}
+                  onChange={(e) => handleOptionChange(e, index)}
+                  checked={selectedAnswers[index] === option}
+                />
+                {option}
+              </label>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      <button onClick={handleSubmit}>Submit Quiz</button>
+    </div>
+  );
+};
+
+export default Quiz;
+
+
+
+
+APP.JSX
+
+import React from "react";
+import Quiz from "./Quiz";
+
+function App() {
+  return (
+    <div>
+      <Quiz />
+    </div>
+  );
+}
+
+export default App;
