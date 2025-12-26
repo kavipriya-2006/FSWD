@@ -1,0 +1,84 @@
+import React, { useState } from "react";
+
+const Poll = () => {
+  // Poll question & options
+  const pollQuestion = "Which subject do you like the most?";
+  const options = ["Maths", "Science", "English", "Computer"];
+
+  // State to store votes
+  const [votes, setVotes] = useState([0, 0, 0, 0]);
+
+  // Handle voting
+  const handleVote = (index) => {
+    const updatedVotes = [...votes];
+    updatedVotes[index] += 1;
+    setVotes(updatedVotes);
+  };
+
+  // Calculate total votes
+  const totalVotes = votes.reduce((a, b) => a + b, 0);
+
+  return (
+    <div className="poll-container">
+      <h1>Classroom Poll</h1>
+
+      <h3>{pollQuestion}</h3>
+
+      {options.map((option, index) => (
+        <button key={index} onClick={() => handleVote(index)}>
+          {option}
+        </button>
+      ))}
+
+      <h3>Live Results</h3>
+
+      {options.map((option, index) => {
+        const percentage =
+          totalVotes === 0 ? 0 : Math.round((votes[index] / totalVotes) * 100);
+
+        return (
+          <div key={index} style={{ marginBottom: "10px" }}>
+            <strong>{option}</strong>
+            <div
+              style={{
+                background: "#ddd",
+                height: "20px",
+                borderRadius: "5px",
+                overflow: "hidden",
+              }}
+            >
+              <div
+                style={{
+                  width: `${percentage}%`,
+                  height: "100%",
+                  background: "#4CAF50",
+                  color: "white",
+                  textAlign: "center",
+                }}
+              >
+                {percentage}%
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default Poll;
+
+APP.JSX
+
+import React from "react";
+import Poll from "./Poll";
+
+function App() {
+  return (
+    <div>
+      <Poll />
+    </div>
+  );
+}
+
+export default App;
