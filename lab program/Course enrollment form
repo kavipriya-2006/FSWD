@@ -1,0 +1,88 @@
+import React, { useState } from 'react';
+
+const CourseEnrollmentForm = () => {
+  // State for selected course, enrolled courses list
+  const [selectedCourse, setSelectedCourse] = useState('');
+  const [enrolledCourses, setEnrolledCourses] = useState([]);
+
+  // List of available courses
+  const courses = [
+    'React Basics',
+    'JavaScript Fundamentals',
+    'HTML & CSS',
+    'Python for Beginners',
+    'Data Structures and Algorithms'
+  ];
+
+  // Handle course selection
+  const handleCourseChange = (e) => {
+    setSelectedCourse(e.target.value);
+  };
+
+  // Handle enrollment submission
+  const handleEnroll = (e) => {
+    e.preventDefault();
+    if (selectedCourse && !enrolledCourses.includes(selectedCourse)) {
+      setEnrolledCourses([...enrolledCourses, selectedCourse]);
+      setSelectedCourse(''); // Reset the selected course
+    } else {
+      alert('Please select a valid course or the course is already enrolled.');
+    }
+  };
+
+  return (
+    <div className="enrollment-container">
+      <h1>Course Enrollment Form</h1>
+      
+      <form onSubmit={handleEnroll}>
+        <div className="form-group">
+          <label htmlFor="course">Select a Course:</label>
+          <select 
+            id="course" 
+            value={selectedCourse} 
+            onChange={handleCourseChange}
+            required
+          >
+            <option value="">--Select a Course--</option>
+            {courses.map((course, index) => (
+              <option key={index} value={course}>
+                {course}
+              </option>
+            ))}
+          </select>
+        </div>
+        
+        <button type="submit">Enroll</button>
+      </form>
+
+      <div className="enrolled-courses">
+        <h2>Enrolled Courses</h2>
+        <ul>
+          {enrolledCourses.length > 0 ? (
+            enrolledCourses.map((course, index) => (
+              <li key={index}>{course}</li>
+            ))
+          ) : (
+            <p>No courses enrolled yet.</p>
+          )}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default CourseEnrollmentForm;
+
+App.jsx
+import React from 'react';
+import CourseEnrollmentForm from './CourseEnrollmentForm';
+
+function App() {
+  return (
+    <div className="App">
+      <CourseEnrollmentForm />
+    </div>
+  );
+}
+
+export default App;
