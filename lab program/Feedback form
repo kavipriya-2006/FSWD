@@ -1,0 +1,87 @@
+import React, { useState } from 'react';
+
+const FeedbackForm = () => {
+  // State for form data
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [feedback, setFeedback] = useState('');
+  const [submittedData, setSubmittedData] = useState(null);
+
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Store submitted data in the state
+    setSubmittedData({ name, email, feedback });
+    // Reset the form fields
+    setName('');
+    setEmail('');
+    setFeedback('');
+  };
+
+  return (
+    <div className="feedback-container">
+      <h1>Feedback Form</h1>
+      
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="feedback">Feedback:</label>
+          <textarea
+            id="feedback"
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+            required
+          />
+        </div>
+        
+        <button type="submit">Submit Feedback</button>
+      </form>
+
+      {submittedData && (
+        <div className="submitted-data">
+          <h2>Submitted Feedback</h2>
+          <p><strong>Name:</strong> {submittedData.name}</p>
+          <p><strong>Email:</strong> {submittedData.email}</p>
+          <p><strong>Feedback:</strong> {submittedData.feedback}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default FeedbackForm;
+
+App.jsx
+import React from 'react';
+import FeedbackForm from './FeedbackForm';
+
+function App() {
+  return (
+    <div className="App">
+      <FeedbackForm />
+    </div>
+  );
+}
+
+export default App;
