@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kavipriya J | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1:#667eea;
+  --bg2:#764ba2;
+  --card:rgba(255,255,255,0.15);
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+  transition:0.6s;
+}
+.portfolio{
+  width:90%;
+  max-width:1100px;
+  background:var(--card);
+  backdrop-filter:blur(14px);
+  border-radius:25px;
+  padding:40px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.35);
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:40px;
+}
+header h1{
+  font-size:2.6rem;
+}
+header p{
+  opacity:0.9;
+}
+.themes button{
+  border:none;
+  padding:8px 14px;
+  margin:5px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:500;
+}
+section{
+  margin-bottom:30px;
+}
+section h2{
+  font-size:1.6rem;
+  margin-bottom:10px;
+  border-bottom:2px solid rgba(255,255,255,0.4);
+  display:inline-block;
+  padding-bottom:5px;
+}
+.about p{
+  margin-top:10px;
+  line-height:1.8;
+}
+.skills ul{
+  list-style:none;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
+  margin-top:15px;
+}
+.skills li{
+  background:rgba(255,255,255,0.25);
+  padding:14px;
+  border-radius:12px;
+  text-align:center;
+}
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+.project{
+  background:rgba(255,255,255,0.25);
+  padding:22px;
+  border-radius:18px;
+  transition:0.3s;
+}
+.project:hover{
+  transform:translateY(-8px);
+}
+footer{
+  text-align:center;
+  margin-top:30px;
+  opacity:0.9;
+}
+footer a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:500;
+}
+@media(max-width:600px){
+  header{
+    flex-direction:column;
+    gap:15px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="portfolio">
+  <header>
+    <div>
+      <h1>Kavipriya J</h1>
+      <p>Student
+    </div>
+    <div class="themes">
+      <button onclick="theme('#667eea','#764ba2')" style="background:#667eea;color:#fff">Purple</button>
+      <button onclick="theme('#11998e','#38ef7d')" style="background:#11998e;color:#fff">Green</button>
+      <button onclick="theme('#ff512f','#dd2476')" style="background:#ff512f;color:#fff">Red</button>
+      <button onclick="theme('#232526','#414345')" style="background:#232526;color:#fff">Dark</button>
+      <button onclick="theme('#2193b0','#6dd5ed')" style="background:#2193b0;color:#fff">Blue</button>
+    </div>
+  </header>
+
+  <section class="about">
+    <h2>About Me</h2>
+    <p>
+      I am Kavipriya J from Salem. I am currently pursuing my UG degree at PSGR Krishnammal
+      College for Women, Coimbatore. I completed my schooling at Bala Barathi Matriculation
+      Higher Secondary School. I completed my internship at Shastha Academy as a Student
+      Information System trainee and I am currently working on a project for Magora Info Tech
+      in the Mobile App domain. My hobbies include writing a diary and listening to music.
+    </p>
+  </section>
+
+  <section class="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>HTML & CSS</li>
+      <li>JavaScript</li>
+      <li>Responsive Design</li>
+      <li>UI / UX</li>
+      <li>Python</li>
+      <li>Git & GitHub</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project">
+        <h3>Portfolio Website</h3>
+        <p>Modern personal portfolio with multiple themes.</p>
+      </div>
+      <div class="project">
+        <h3>Student Information System</h3>
+        <p>Internship project developed during training at Shastha Academy.</p>
+      </div>
+      <div class="project">
+        <h3>Mobile App Project</h3>
+        <p>Ongoing project for Magora Info Tech in the mobile application domain.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Email: kaviipriya2006@email.com | <a href="#">LinkedIn</a> | <a href="#">GitHub</a></p>
+  </footer>
+</div>
+
+<script>
+function theme(c1,c2){
+  document.documentElement.style.setProperty('--bg1',c1);
+  document.documentElement.style.setProperty('--bg2',c2);
+}
+</script>
+
+</body>
+</html>
